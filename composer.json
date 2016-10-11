@@ -1,0 +1,31 @@
+{
+    "name": "yiizh/i.yiizh.com",
+    "description": "http://i.yiizh.com.",
+    "type": "project",
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=5.4.0",
+        "yiisoft/yii2": ">=2.0.5",
+        "yiisoft/yii2-bootstrap": "*",
+        "yiisoft/yii2-authclient": "*",
+        "yiisoft/yii2-swiftmailer": "*",
+        "yiisoft/yii2-jui": "*",
+        "yiizh/yii2-fontawesome": "*",
+        "vlucas/phpdotenv": "*",
+        "abeautifulsite/jquery-minicolors": "*",
+        "2amigos/yii2-date-picker-widget" : "~1.0"
+    },
+    "require-dev": {
+        "yiisoft/yii2-gii": "*",
+        "yiisoft/yii2-debug": "*"
+    },
+    "config": {
+        "process-timeout": 1800
+    },
+    "extra": {
+        "asset-installer-paths": {
+            "npm-asset-library": "vendor/npm",
+            "bower-asset-library": "vendor/bower"
+        }
+    }
+}
