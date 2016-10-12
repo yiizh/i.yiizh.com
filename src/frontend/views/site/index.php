@@ -15,6 +15,7 @@ use yii\helpers\Html;
  * @var $catalogs array
  */
 
+$this->title = '网址导航[i.yiizh.com]_实用的上网导航';
 ?>
 <div class="box box-links">
     <div class="box-body">
