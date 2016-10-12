@@ -183,34 +183,39 @@ use yii\helpers\Html;
         </div>
 
         <a data-type="3" data-tmpl="800x90" data-tmplid="195" data-rd="2" data-style="2" data-border="1" href="#"></a>
+        <?php if ($this->beginCache('__site_index_catalogs')): ?>
+            <div class="box box-dl">
+                <div class="box-header">
+                    <h4 class="box-title">分类导航</h4>
+                </div>
+                <div class="box-body no-padding">
+                    <ul class="link-list">
+                        <?php
+                        foreach ($catalogs as $value):
+                            $catalog = Catalog::findOne($value);
+                            ?>
+                            <li class="hover">
+                                <a class="more" href="javascript: void(0)">更多</a>
+                                <dl>
+                                    <dt>
+                                        <a href="javascript: void(0)" class="text-blue"><?= $catalog->name ?></a>
+                                    </dt>
+                                    <?php foreach (LinkHelper::getLinksByCatalog($value) as $link): ?>
+                                        <dd>
+                                            <?= $link->getLink() ?>
+                                        </dd>
+                                    <?php endforeach; ?>
+                                </dl>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
 
-        <div class="box box-dl">
-            <div class="box-header">
-                <h4 class="box-title">分类导航</h4>
+                </div>
             </div>
-            <div class="box-body no-padding">
-                <ul class="link-list">
-                    <?php
-                    foreach ($catalogs as $value):
-                        $catalog = Catalog::findOne($value);
-                        ?>
-                        <li class="hover">
-                            <a class="more" href="javascript: void(0)">更多</a>
-                            <dl>
-                                <dt>
-                                    <a href="javascript: void(0)" class="text-blue"><?= $catalog->name ?></a>
-                                </dt>
-                                <?php foreach (LinkHelper::getLinksByCatalog($value) as $link): ?>
-                                    <dd>
-                                        <?= $link->getLink() ?>
-                                    </dd>
-                                <?php endforeach; ?>
-                            </dl>
-                        </li>
-                    <?php endforeach; ?>
-                </ul>
 
-            </div>
-        </div>
+            <?php
+            $this->endCache();
+        endif;
+        ?>
     </div>
 </div>
