@@ -28,6 +28,18 @@ class SiteController extends FrontendController
 
     public function actionIndex()
     {
-        return $this->render('index');
+        $cache = \Yii::$app->cache;
+        // try retrieving $data from cache
+        $news = $cache->get('__site_index_news');
+
+        if ($news === false) {
+            $news = \Yii::$app->juhe->getNews();
+            // store $data in cache so that it can be retrieved next time
+            $cache->set('__site_index_news', $news, 15 * 60);
+        }
+
+        return $this->render('index', [
+            'news' => $news
+        ]);
     }
 }

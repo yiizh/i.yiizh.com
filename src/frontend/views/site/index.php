@@ -4,7 +4,14 @@
  * @copyright Copyright (c) 2016 yiizh.com
  * @license http://www.yiizh.com/license/
  */
+use common\components\View;
 use common\helpers\LinkHelper;
+use yii\helpers\Html;
+
+/**
+ * @var $this View
+ * @var $news array
+ */
 
 ?>
 <div class="box box-links">
@@ -139,6 +146,15 @@ use common\helpers\LinkHelper;
                 <?php foreach (LinkHelper::getLinksByCatalog(5) as $index => $link): ?>
                     <?= $link->getImageLink() ?>
                 <?php endforeach; ?>
+
+                <ul class="list-unstyled">
+                    <?php
+                    for ($i = 0; $i < (count($news) > 5 ? 5 : count($news)); $i++):
+                        $v = $news[$i];
+                        ?>
+                        <li><?= Html::a($v['title'], $v['url'], ['target' => '_blank']) ?></li>
+                    <?php endfor; ?>
+                </ul>
             </div>
         </div>
 

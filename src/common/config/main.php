@@ -39,6 +39,10 @@ return [
         ],
         'view'=>[
             'class'=>'common\components\View'
+        ],
+        'juhe'=>[
+            'class'=>'common\libs\juhe\Juhe',
+            'appKey'=>getenv('JUHE_APP_KEY')
         ]
     ],
 ];
