@@ -27,7 +27,7 @@ $linkItems = [];
 foreach ($linkProvider->getModels() as $catalogLink) {
     $link = $catalogLink->link;
     $linkItems[] = [
-        'content' => Html::a('移除', ['/manage/catalog-link/remove', 'id' => $link->id, 'returnUrl' => Yii::$app->request->url], [
+        'content' => Html::a('移除', ['/manage/catalog-link/remove', 'id' => $catalogLink->id, 'returnUrl' => Yii::$app->request->url], [
                 'class' => 'btn btn-xs btn-danger pull-right',
                 'data' => [
                     'method' => 'post'

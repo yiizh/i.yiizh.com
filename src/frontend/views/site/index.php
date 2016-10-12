@@ -6,11 +6,13 @@
  */
 use common\components\View;
 use common\helpers\LinkHelper;
+use common\models\Catalog;
 use yii\helpers\Html;
 
 /**
  * @var $this View
  * @var $news array
+ * @var $catalogs array
  */
 
 ?>
@@ -157,7 +159,12 @@ use yii\helpers\Html;
                 </ul>
             </div>
         </div>
-
+        <div class="box">
+            <div class="box-body">
+                <a data-type="3" data-tmpl="220x290" data-tmplid="29" data-rd="2" data-style="2" data-border="1"
+                   href="#"></a>
+            </div>
+        </div>
     </div>
     <div class="col-xs-9">
         <div class="box box-links">
@@ -175,64 +182,32 @@ use yii\helpers\Html;
             </div>
         </div>
 
+        <a data-type="3" data-tmpl="800x90" data-tmplid="195" data-rd="2" data-style="2" data-border="1" href="#"></a>
+
         <div class="box box-dl">
             <div class="box-header">
                 <h4 class="box-title">分类导航</h4>
             </div>
-            <div class="box-body">
-                <ul>
-                    <li>
-                        <a class="more" href="#">更多</a>
-                        <dl>
-                            <dt>
-                                <a href="#" class="text-blue">页游</a>
-                            </dt>
-                            <dd>
-                                <a href="#">4399网页游戏</a>
-                            </dd>
-                            <dd>
-                                <a href="#">4399网页游戏</a>
-                            </dd>
-                            <dd>
-                                <a href="#">4399网页游戏</a>
-                            </dd>
-                            <dd>
-                                <a href="#">4399网页游戏</a>
-                            </dd>
-                            <dd>
-                                <a href="#">4399网页游戏</a>
-                            </dd>
-                            <dd>
-                                <a href="#">4399网页游戏</a>
-                            </dd>
-                        </dl>
-                    </li>
-                    <li>
-                        <a class="more" href="#">更多</a>
-                        <dl>
-                            <dt>
-                                <a href="#">页游</a>
-                            </dt>
-                            <dd>
-                                <a href="#">4399网页游戏</a>
-                            </dd>
-                            <dd>
-                                <a href="#">4399网页游戏</a>
-                            </dd>
-                            <dd>
-                                <a href="#">4399网页游戏</a>
-                            </dd>
-                            <dd>
-                                <a href="#">4399网页游戏</a>
-                            </dd>
-                            <dd>
-                                <a href="#">4399网页游戏</a>
-                            </dd>
-                            <dd>
-                                <a href="#">4399网页游戏</a>
-                            </dd>
-                        </dl>
-                    </li>
+            <div class="box-body no-padding">
+                <ul class="link-list">
+                    <?php
+                    foreach ($catalogs as $value):
+                        $catalog = Catalog::findOne($value);
+                        ?>
+                        <li class="hover">
+                            <a class="more" href="javascript: void(0)">更多</a>
+                            <dl>
+                                <dt>
+                                    <a href="javascript: void(0)" class="text-blue"><?= $catalog->name ?></a>
+                                </dt>
+                                <?php foreach (LinkHelper::getLinksByCatalog($value) as $link): ?>
+                                    <dd>
+                                        <?= $link->getLink() ?>
+                                    </dd>
+                                <?php endforeach; ?>
+                            </dl>
+                        </li>
+                    <?php endforeach; ?>
                 </ul>
 
             </div>

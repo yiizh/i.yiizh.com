@@ -38,8 +38,11 @@ class SiteController extends FrontendController
             $cache->set('__site_index_news', $news, 15 * 60);
         }
 
+        $catalogs = [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+
         return $this->render('index', [
-            'news' => $news
+            'news' => $news,
+            'catalogs'=>$catalogs
         ]);
     }
 }
