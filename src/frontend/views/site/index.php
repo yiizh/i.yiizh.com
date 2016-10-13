@@ -6,13 +6,14 @@
  */
 use common\components\View;
 use common\helpers\LinkHelper;
-use common\models\Catalog;
+use common\models\Link;
 use yii\helpers\Html;
 
 /**
  * @var $this View
  * @var $news array
  * @var $catalogs array
+ * @var $link Link
  */
 
 $this->title = '网址导航[i.yiizh.com]_实用的上网导航';
@@ -184,39 +185,29 @@ $this->title = '网址导航[i.yiizh.com]_实用的上网导航';
         </div>
 
         <a data-type="3" data-tmpl="800x90" data-tmplid="195" data-rd="2" data-style="2" data-border="1" href="#"></a>
-        <?php if ($this->beginCache('__site_index_catalogs')): ?>
-            <div class="box box-dl">
-                <div class="box-header">
-                    <h4 class="box-title">分类导航</h4>
-                </div>
-                <div class="box-body no-padding">
-                    <ul class="link-list">
-                        <?php
-                        foreach ($catalogs as $value):
-                            $catalog = Catalog::findOne($value);
-                            ?>
-                            <li class="hover">
-                                <a class="more" href="javascript: void(0)">更多</a>
-                                <dl>
-                                    <dt>
-                                        <a href="javascript: void(0)" class="text-blue"><?= $catalog->name ?></a>
-                                    </dt>
-                                    <?php foreach (LinkHelper::getLinksByCatalog($value) as $link): ?>
-                                        <dd>
-                                            <?= $link->getLink() ?>
-                                        </dd>
-                                    <?php endforeach; ?>
-                                </dl>
-                            </li>
-                        <?php endforeach; ?>
-                    </ul>
-
-                </div>
+        <div class="box box-dl">
+            <div class="box-header">
+                <h4 class="box-title">分类导航</h4>
             </div>
-
-            <?php
-            $this->endCache();
-        endif;
-        ?>
+            <div class="box-body no-padding">
+                <ul class="link-list">
+                    <?php foreach ($catalogs as $catalog): ?>
+                        <li class="hover">
+                            <a class="more" href="javascript: void(0)">更多</a>
+                            <dl>
+                                <dt>
+                                    <a href="javascript: void(0)" class="text-blue"><?= $catalog['name'] ?></a>
+                                </dt>
+                                <?php foreach ($catalog['links'] as $link): ?>
+                                    <dd>
+                                        <?= $link->getLink() ?>
+                                    </dd>
+                                <?php endforeach; ?>
+                            </dl>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        </div>
     </div>
 </div>

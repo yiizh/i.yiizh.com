@@ -53,11 +53,30 @@ class Link extends BaseLink
     }
 
     /**
+     * 链接是否过期
+     *
+     * @return bool
+     */
+    public function getIsExpired()
+    {
+        if ($this->expireDate == null) {
+            return false;
+        }
+        $now = time();
+        $expireAt = strtotime($this->expireDate . ' 23:59:59');
+
+        return $now >= $expireAt;
+    }
+
+    /**
      * @param array $options
      * @return string
      */
     public function getLink($options = [])
     {
+        if ($this->getIsExpired()) {
+            return null;
+        }
         if ($this->titleColor) {
             $options['style'] = "color:$this->titleColor";
         }
@@ -71,6 +90,9 @@ class Link extends BaseLink
      */
     public function getImageLink($options = [])
     {
+        if ($this->getIsExpired()) {
+            return null;
+        }
         $linkOptions = ArrayHelper::getValue($options, 'linkOptions', []);
         $imageOptions = ArrayHelper::getValue($options, 'imageOptions', []);
         if ($this->imageUrl == null) {

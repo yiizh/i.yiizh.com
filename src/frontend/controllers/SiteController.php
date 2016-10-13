@@ -8,6 +8,8 @@
 namespace frontend\controllers;
 
 
+use common\helpers\LinkHelper;
+use common\models\Catalog;
 use frontend\components\FrontendController;
 
 class SiteController extends FrontendController
@@ -38,11 +40,25 @@ class SiteController extends FrontendController
             $cache->set('__site_index_news', $news, 15 * 60);
         }
 
-        $catalogs = [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+        $catalogs = $cache->get('__site_index_catalogs');
+
+        if ($catalogs == false) {
+            $catalogList = [6, 7, 8, 9];
+            foreach ($catalogList as $value) {
+                $catalog = Catalog::findOne($value);
+                $catalogs[] = [
+                    'id' => $catalog->id,
+                    'name' => $catalog->name,
+                    'links' => LinkHelper::getLinksByCatalog($catalog->id)
+                ];
+            }
+            $cache->set('__site_index_catalogs', $catalogs, 15 * 60);
+        }
+
 
         return $this->render('index', [
             'news' => $news,
-            'catalogs'=>$catalogs
+            'catalogs' => $catalogs
         ]);
     }
 }
