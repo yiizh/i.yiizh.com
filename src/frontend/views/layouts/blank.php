@@ -55,7 +55,10 @@ AppAsset::register($this);
 
     <footer class="footer">
         <div class="container">
-            <p class="pull-left">&copy; yiizh.com <?= date('Y') ?></p>
+            <p class="pull-left">
+                &copy; yiizh.com <?= date('Y') ?>
+                <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1260669478'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1260669478' type='text/javascript'%3E%3C/script%3E"));</script>
+            </p>
 
             <p class="pull-right">
                 <span><?= Html::a('阿里云', 'http://s.click.taobao.com/t?e=m%3D2%26s%3DWKB%2BwlQvqPEcQipKwQzePCperVdZeJviEViQ0P1Vf2kguMN8XjClAuvsX0qrShkuTe1Hf62mOe6CWq18cqI6t7QEpzPETciCXivlwmqvi0q2xFkaU%2F3QbTDVuRn8ddiDsEVVC24eqozO54LQ%2FVw1L9X5LHh3Z8M%2BWS6ALZVeqlk9XUfbPSJC%2F06deTzTIbffYpyF7ku%2BxKguktBpDNMjUkKEtlQK%2BrdARZujRnIpwuLGJe8N%2FwNpGw%3D%3D') ?>
